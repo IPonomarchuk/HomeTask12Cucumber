@@ -1,11 +1,10 @@
 package com.aqacourses.project.pages;
 
 import com.aqacourses.project.base.BaseTest;
+import java.math.BigDecimal;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.math.BigDecimal;
 
 public class ShoppingCartPage extends AbstractPage {
 

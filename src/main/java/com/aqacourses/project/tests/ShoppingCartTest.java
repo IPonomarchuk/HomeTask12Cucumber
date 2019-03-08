@@ -17,18 +17,17 @@ public class ShoppingCartTest extends BaseTest {
      * check that total price is increased by the price of product. Delete the product and verify
      * message
      */
-
     private HomePage homePage;
+
     private LoginPage loginPage;
     private MyAccountPage myAccountPage;
     private TShirtsPage tShirtsPage;
     private ProductPage productPage;
     private ShoppingCartPage shoppingCartPage;
 
-
-        // Open site
+    // Open site
     @Given("The user opens site sees Home Page")
-                public void theUserOpensSiteSeesHomePage() {
+    public void theUserOpensSiteSeesHomePage() {
         homePage = openSite();
         log("Opened site");
     }
@@ -40,60 +39,58 @@ public class ShoppingCartTest extends BaseTest {
     }
     // Fill in email and password to login form and click on the "Sign in" button
     @When("User fills in email and password to login form and clicks on the \"Sign in\" button")
-            public void userFillsInEmailAndPasswordToLoginFormAndClicksOnTheSignInButton() {
+    public void userFillsInEmailAndPasswordToLoginFormAndClicksOnTheSignInButton() {
         myAccountPage = loginPage.login();
         log("Filled in email and password to login form and clicked on the \"Sign in\" button");
     }
     // Open TShirtsPage
     @When("User clicks on TShirts Button")
-            public void userClicksOnTShirtsButton(){
+    public void userClicksOnTShirtsButton() {
         tShirtsPage = myAccountPage.openTShirtsPage();
         log("Opened TShirtsPage");
     }
     // Open the product
     @When("User clicks on product")
-            public void userClicksOnProduct() {
+    public void userClicksOnProduct() {
         productPage = tShirtsPage.openProductByTitle("Faded Short Sleeve T-shirts");
         log("Opened product");
     }
     // Verify breadcrumb
     @Then("User verifies breadcrumb")
-            public void userVerifiesBreadcrumb() {
-        productPage.verifyBreadcrumb(Categories.WOMEN.toString() + ">" + Categories.TOPS + ">" + Categories.TSHIRTS);
+    public void userVerifiesBreadcrumb() {
+        productPage.verifyBreadcrumb(
+                Categories.WOMEN.toString() + ">" + Categories.TOPS + ">" + Categories.TSHIRTS);
         log("Verified breadcrumb");
     }
 
-// Add product to shopping cart and proceed to checkout
+    // Add product to shopping cart and proceed to checkout
     @When("User clicks on add to cart button and then clicks on proceed to checkout button")
-        public void userClicksOnAddToCartButtonAndThenClicksOnProceedToCheckoutButton() {
+    public void userClicksOnAddToCartButtonAndThenClicksOnProceedToCheckoutButton() {
         shoppingCartPage = productPage.addProductToShoppingCartAndProceedToCheckout();
         log("Added product to shopping cart and proceeded to checkout");
     }
-// Increase quantity of product by one
+    // Increase quantity of product by one
     @When("User clicks on plus button to increase quantity of product by one")
-            public void UserClicksOnPlusButtonToIncreaseQuantityOfProductByOne() {
+    public void UserClicksOnPlusButtonToIncreaseQuantityOfProductByOne() {
         shoppingCartPage.increaseQuantityOfProductByOne();
         log("Increased quantity of product by one");
     }
-// Validate total price
+    // Validate total price
     @Then("User validates the total price")
-            public void userValidatesTheTotalPrice() {
+    public void userValidatesTheTotalPrice() {
         shoppingCartPage.validateTotalPrice();
         log("Validated total price");
     }
-// Delete product and verify that message is displayed
+    // Delete product and verify that message is displayed
     @When("User deletes product and verifies that correct message is displayed")
-            public void userDeletesProductAndVerifiesThatCorrectMessageIsDisplayed() {
+    public void userDeletesProductAndVerifiesThatCorrectMessageIsDisplayed() {
         shoppingCartPage.deleteProduct();
         log("Deleted product and verified that message is displayed");
     }
-// Close browser
+    // Close browser
     @And("User closes browser")
     public void userClosesBrowser() {
         closeSite();
         log("Closed site");
     }
-
-
-    }
-
+}

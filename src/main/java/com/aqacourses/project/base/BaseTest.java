@@ -2,6 +2,9 @@ package com.aqacourses.project.base;
 
 import com.aqacourses.project.pages.HomePage;
 import com.aqacourses.project.utils.YamlParser;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Rule;
@@ -12,10 +15,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
 
 public class BaseTest {
 
@@ -109,16 +108,12 @@ public class BaseTest {
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
-
-
     /**
      * Wait till value of element is increased by one
      *
      * @param locator
      * @param expectedValue
      */
-
-
     public void waitTillValueOfElementIsIncreasedByOne(String locator, int expectedValue) {
         wait.until(
                 ExpectedConditions.textToBePresentInElementValue(

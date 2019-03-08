@@ -1,13 +1,12 @@
 package com.aqacourses.project.base;
 
+import java.io.File;
+import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
-import java.io.File;
-import java.io.IOException;
 
 public class RunTestRule extends TestWatcher {
 
