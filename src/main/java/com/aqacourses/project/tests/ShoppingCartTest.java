@@ -2,7 +2,6 @@ package com.aqacourses.project.tests;
 
 import com.aqacourses.project.base.BaseTest;
 import com.aqacourses.project.pages.*;
-import com.aqacourses.project.utils.Categories;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -38,9 +37,11 @@ public class ShoppingCartTest extends BaseTest {
         log("Clicked on the \"Sign in\" link");
     }
     // Fill in email and password to login form and click on the "Sign in" button
-    @When("User fills in email and password to login form and clicks on the \"Sign in\" button")
-    public void userFillsInEmailAndPasswordToLoginFormAndClicksOnTheSignInButton() {
-        myAccountPage = loginPage.login();
+    @When(
+            "User fills in email '([^\"]*)' and password '([^\"]*)' to login form and clicks on the \"Sign in\" button")
+    public void userFillsInEmailAndPasswordToLoginFormAndClicksOnTheSignInButton(
+            String email, String password) {
+        myAccountPage = loginPage.login(email, password);
         log("Filled in email and password to login form and clicked on the \"Sign in\" button");
     }
     // Open TShirtsPage
@@ -50,16 +51,15 @@ public class ShoppingCartTest extends BaseTest {
         log("Opened TShirtsPage");
     }
     // Open the product
-    @When("User clicks on product")
-    public void userClicksOnProduct() {
-        productPage = tShirtsPage.openProductByTitle("Faded Short Sleeve T-shirts");
+    @When("User clicks on product '([^\"]*)'")
+    public void userClicksOnProduct(String nameOfProduct) {
+        productPage = tShirtsPage.openProductByTitle(nameOfProduct);
         log("Opened product");
     }
     // Verify breadcrumb
-    @Then("User verifies breadcrumb")
-    public void userVerifiesBreadcrumb() {
-        productPage.verifyBreadcrumb(
-                Categories.WOMEN.toString() + ">" + Categories.TOPS + ">" + Categories.TSHIRTS);
+    @Then("User verifies breadcrumb. Breadcrumb is '([^\"]*)'")
+    public void userVerifiesBreadcrumb(String expectedBreadcrumb) {
+        productPage.verifyBreadcrumb(expectedBreadcrumb);
         log("Verified breadcrumb");
     }
 
@@ -82,9 +82,10 @@ public class ShoppingCartTest extends BaseTest {
         log("Validated total price");
     }
     // Delete product and verify that message is displayed
-    @When("User deletes product and verifies that correct message is displayed")
-    public void userDeletesProductAndVerifiesThatCorrectMessageIsDisplayed() {
-        shoppingCartPage.deleteProduct();
+    @When(
+            "User deletes product and verifies that correct message is displayed. Message is '([^\"]*)'")
+    public void userDeletesProductAndVerifiesThatCorrectMessageIsDisplayed(String expectedMessage) {
+        shoppingCartPage.deleteProduct(expectedMessage);
         log("Deleted product and verified that message is displayed");
     }
     // Close browser

@@ -1,7 +1,6 @@
 package com.aqacourses.project.pages;
 
 import com.aqacourses.project.base.BaseTest;
-import com.aqacourses.project.utils.YamlParser;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,10 +40,10 @@ public class LoginPage extends AbstractPage {
      *
      * @return new instance of MyAccountPage
      */
-    public MyAccountPage login() {
+    public MyAccountPage login(String email, String password) {
         testClass.waitTillElementIsVisible(emailTextField);
-        emailTextField.sendKeys(YamlParser.getYamlData().getEmail());
-        passwordTextField.sendKeys(YamlParser.getYamlData().getPassword());
+        emailTextField.sendKeys(email);
+        passwordTextField.sendKeys(password);
         signInButton.click();
         return new MyAccountPage(testClass);
     }

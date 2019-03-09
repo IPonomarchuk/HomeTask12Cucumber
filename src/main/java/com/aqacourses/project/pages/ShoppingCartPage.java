@@ -67,12 +67,12 @@ public class ShoppingCartPage extends AbstractPage {
     }
 
     /** Delete product and verify that message is displayed */
-    public void deleteProduct() {
+    public void deleteProduct(String expectedMessage) {
         deleteButton.click();
         testClass.waitTillElementIsVisible(emptyShoppingCart);
         Assert.assertEquals(
                 "Message is not the same as expected",
-                MESSAGE_EMPTY_SHOPPING_CART,
+                expectedMessage,
                 emptyShoppingCart.getText());
     }
 }
